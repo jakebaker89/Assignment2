@@ -3,6 +3,7 @@
 
 <head>
     <title>Locate Me</title>
+    <script src="https://assets.what3words.com/sdk/v3/what3words.js?key=U4YS2DD5"></script>
     <link rel="stylesheet" type="text/css" href="../Styles/styles.css" />
 </head>
 
@@ -36,7 +37,7 @@
     function getLocation() {
         if (navigator.geolocation) {
             navigator.geolocation.getCurrentPosition(getData);
-            //navigator.geolocation.getCurrentPosition(convertToGridRef);
+            navigator.geolocation.getCurrentPosition(getThreeWordLocation);
             navigator.geolocation.getCurrentPosition(showPosition);
 
         } else {
@@ -53,6 +54,12 @@
         timestamp = position.timestamp;
         //set datetime to be a Date type for the value of timestamp
         datetime = new Date(timestamp);
+    }
+
+    function getThreeWordLocation() {
+        what3words.api.convertTo3wa({lat:51.508344, lng:-0.12549900}).then(function(response) {
+            console.log("[convertTo3wa]", response);
+        });
     }
 
     //display geolocation data
@@ -85,7 +92,7 @@
     }
 
 
-    function convertToGridRef(latitude1, longitude1) {
+    /*function convertToGridRef(latitude1, longitude1) {
         var latitude1 = latitude;
         var longitude1 = longitude;
         document.write(longitude1);
