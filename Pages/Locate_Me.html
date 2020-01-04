@@ -29,6 +29,7 @@
     var timestamp = null;
     var datetime = null;
 
+    //get geolocation data if the brower supports it
     function getLocation() {
         if (navigator.geolocation) {
             navigator.geolocation.getCurrentPosition(getData);
@@ -39,16 +40,18 @@
         }
     }
 
+    //save the geolocation data into variables
     function getData(position) {
         //set values of variables to be those from the geolocation object
         latitude = position.coords.latitude;
         longitude = position.coords.longitude;
         accuracy = position.coords.accuracy;
         timestamp = position.timestamp;
-        //set datetime to be a Date property for the value of timestamp
+        //set datetime to be a Date type for the value of timestamp
         datetime = new Date(timestamp);
     }
 
+    //display geolocation data
     function showPosition() {
         /*
         //set values of variables to be those from the geolocation object
