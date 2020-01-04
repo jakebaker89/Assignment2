@@ -12,6 +12,32 @@
 <img src="../Images/Banner Logo.jpg" alt="Hillbaggers Banner Logo">
 <br>
 
+<!-- Take basic geolocation script from w3schools to be adapted to suit the requirements of this page -->
+<p>Click the button to get your coordinates.</p>
+
+<button onclick="getLocation()">Try It</button>
+
+<p id="demo"></p>
+
+<script>
+    var x = document.getElementById("demo");
+
+    function getLocation() {
+        if (navigator.geolocation) {
+            navigator.geolocation.getCurrentPosition(showPosition);
+        } else {
+            x.innerHTML = "Geolocation is not supported by this browser.";
+        }
+    }
+
+    function showPosition(position) {
+        x.innerHTML = "Latitude: " + position.coords.latitude +
+            "<br>Longitude: " + position.coords.longitude;
+    }
+</script>
+
+<br>
+
 <!--buttons for other pages -->
 <button type="button"><a href = Hills.html>Hills</a></button>
 <button type="button"><a href = Emergency.html>Emergency</a></button>
