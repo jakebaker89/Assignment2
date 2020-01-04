@@ -31,13 +31,15 @@
 
     function getLocation() {
         if (navigator.geolocation) {
+            navigator.geolocation.getCurrentPosition(getData);
             navigator.geolocation.getCurrentPosition(showPosition);
+
         } else {
             x.innerHTML = "Geolocation is not supported by this browser.";
         }
     }
 
-    function showPosition(position) {
+    function getData(position) {
         //set values of variables to be those from the geolocation object
         latitude = position.coords.latitude;
         longitude = position.coords.longitude;
@@ -45,6 +47,18 @@
         timestamp = position.timestamp;
         //set datetime to be a Date property for the value of timestamp
         datetime = new Date(timestamp);
+    }
+
+    function showPosition() {
+        /*
+        //set values of variables to be those from the geolocation object
+        latitude = position.coords.latitude;
+        longitude = position.coords.longitude;
+        accuracy = position.coords.accuracy;
+        timestamp = position.timestamp;
+        //set datetime to be a Date property for the value of timestamp
+        datetime = new Date(timestamp);
+        */
 
         x.innerHTML =
             /*
