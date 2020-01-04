@@ -21,6 +21,13 @@
 
 <script>
     var x = document.getElementById("demo");
+    //declared variables to hold the latitude, longitude and accuracy values
+    //create an additional datetime variable for a user readable date time
+    var latitude = null;
+    var longitude = null;
+    var accuracy = null;
+    var timestamp = null;
+    var datetime = null;
 
     function getLocation() {
         if (navigator.geolocation) {
@@ -31,11 +38,31 @@
     }
 
     function showPosition(position) {
+        //set values of variables to be those from the geolocation object
+        latitude = position.coords.latitude;
+        longitude = position.coords.longitude;
+        accuracy = position.coords.accuracy;
+        timestamp = position.timestamp;
+        //set datetime to be a Date property for the value of timestamp
+        datetime = new Date(timestamp);
+
         x.innerHTML =
+            /*
+            //w3schools code
             "Latitude: " + position.coords.latitude +
             "<br>Longitude: " + position.coords.longitude +
             "<br>Location Accuracy: " + position.coords.accuracy + "m";
+            */
+
+            //JB code to test
+            "--Start JB code test--<br>" +
+            "Latitude: " + latitude +
+            "<br>Longitude: " + longitude +
+            "<br>Location Accuracy: " + accuracy + "m" +
+            "<br>Timestamp: " + datetime.toUTCString() +    //convert the original unix timestamp to a user readable date time value
+            "<br>--End JB code test--"
     }
+
 </script>
 
 <br>
