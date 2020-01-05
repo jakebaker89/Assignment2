@@ -1,5 +1,25 @@
 /* Style sheet for index.html */
 
+/*
+    Formatting for Headers
+ */
+h2 {
+    text-align: center;
+}
+
+/*
+    Formatting for buttons
+ */
+.linkButton {
+    text-align: center;
+}
+.displayButton {
+    text-align: center;
+}
+
+/*
+    Formatting for headers and footers
+ */
 #banner {
     width: 100%;
 }
@@ -11,6 +31,11 @@
     width: 33%;
     padding: 0;
 }
+
+/*
+    Formatting for tables
+ */
+
 table {
     width: 75%;
     margin-left:auto;
@@ -35,6 +60,8 @@ td {
 .complete {
     width: 20%;
 }
+
+
 
 /*
 body {
