@@ -23,13 +23,14 @@ h2 {
 #banner {
     width: 100%;
 }
-#footer {
+.footer {
     width: 100%;
-    padding: 0;
+    padding: 0px;
+    text-align: center;
 }
 .menu {
-    width: 33%;
-    padding: 0;
+    width: 30%;
+    padding: 0px;
 }
 
 /*
