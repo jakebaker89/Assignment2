@@ -1,4 +1,4 @@
-<!doctype html>
+<!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/html" lang="en">
 
 <head>
@@ -7,126 +7,18 @@
 </head>
 
 <body>
-
 <!--Image of the Banner logo -->
 <img src="../Images/Banner Logo.jpg" alt="Hillbaggers Banner Logo">
 <br>
 
-<!-- Take basic geolocation script from w3schools to be adapted to suit the requirements of this page -->
-<p>Click the button to get your coordinates.</p>
+<p id="geo"></p>
+<p id="words"></p>
 
-<button onclick="getLocation()">Try It</button>
+<button id="ButtonGeo">Show Geo Data</button>
+<button id="ButtonWords">Show What 3 Words Data</button>
+<script src="../script.js"></script>
 
-<p id="demo"></p>
-
-<script>
-    var x = document.getElementById("demo");
-    //declared variables to hold the latitude, longitude and accuracy values
-    //create an additional datetime variable for a user readable date time
-    var latitude;
-    var longitude;
-    var accuracy;
-    var timestamp;
-    var datetime;
-
-    //What3Words API key
-    //U4YS2DD5
-
-    //get geolocation data if the brower supports it
-    function getLocation() {
-        if (navigator.geolocation) {
-            navigator.geolocation.getCurrentPosition(getData);
-            navigator.geolocation.getCurrentPosition(getThreeWordLocation);
-            navigator.geolocation.getCurrentPosition(showPosition);
-
-        } else {
-            x.innerHTML = "Geolocation is not supported by this browser.";
-        }
-    }
-
-    //save the geolocation data into variables
-    function getData(position) {
-        //set values of variables to be those from the geolocation object
-        latitude = position.coords.latitude;
-        longitude = position.coords.longitude;
-        accuracy = position.coords.accuracy;
-        timestamp = position.timestamp;
-        //set datetime to be a Date type for the value of timestamp
-        datetime = new Date(timestamp);
-    }
-
-    function getThreeWordLocation() {
-        what3words.api.convertTo3wa({lat:51.508344, lng:-0.12549900}).then(function(response) {
-            console.log("[convertTo3wa]", response);
-        });
-    }
-
-    //display geolocation data
-    function showPosition() {
-        /*
-        //set values of variables to be those from the geolocation object
-        latitude = position.coords.latitude;
-        longitude = position.coords.longitude;
-        accuracy = position.coords.accuracy;
-        timestamp = position.timestamp;
-        //set datetime to be a Date property for the value of timestamp
-        datetime = new Date(timestamp);
-        */
-
-        x.innerHTML =
-            /*
-            //w3schools code
-            "Latitude: " + position.coords.latitude +
-            "<br>Longitude: " + position.coords.longitude +
-            "<br>Location Accuracy: " + position.coords.accuracy + "m";
-            */
-
-            //JB code to test
-            "--Start JB code test--<br>" +
-            "Latitude: " + latitude +
-            "<br>Longitude: " + longitude +
-            "<br>Location Accuracy: " + accuracy + "m" +
-            "<br>Timestamp: " + datetime.toUTCString() +    //convert the original unix timestamp to a user readable date time value
-            "<br>--End JB code test--";
-    }
-
-
-    /*function convertToGridRef(latitude1, longitude1) {
-        var latitude1 = latitude;
-        var longitude1 = longitude;
-        document.write(longitude1);
-        document.write(longitude);
-
-        var t = gridRefUtilsToolbox();
-        //var ukGridReference = 'NN 16667 71285';
-//convert to a numeric reference
-        //var ukGridNumbers = grutoolbox.getUKGridNums(ukGridReference);
-//convert to global latitude/longitude
-        //var gpsCoords = grutoolbox.gridToLatLong(ukGridNumbers,grutoolbox.COORDS_GPS_UK,grutoolbox.HTML);
-
-        //convert from global latitude/longitude to Grid Numbers
-        var ukGridNumbers = t.latLongToGrid(latitude1,longitude1,t.COORDS_GPS_UK,t.DATA_ARRAY);
-        document.write(ukGridNumbers);
-
-        //convert from Grid Numbers to a grid reference
-        var ukGridReference = t.getUKGridRef(ukGridNumbers,4,t.text);
-        document.write(ukGridReference);
-    }
-
-    /*
-    function test() {
-        var grutoolbox = gridRefUtilsToolbox();
-        var ukGridReference = 'NN 16667 71285';
-//convert to a numeric reference
-        var ukGridNumbers = grutoolbox.getUKGridNums(ukGridReference);
-//convert to global latitude/longitude
-        var gpsCoords = grutoolbox.gridToLatLong(ukGridNumbers,grutoolbox.COORDS_GPS_UK,grutoolbox.HTML);
-    }
-
-     */
-
-</script>
-
+<br>
 <br>
 
 <!--buttons for other pages -->
