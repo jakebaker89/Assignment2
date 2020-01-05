@@ -84,7 +84,7 @@ function showPosition() {
         "Latitude: " + latitude +
         "<br>Longitude: " + longitude +
         "<br>Location Accuracy: " + accuracy + "m" +
-        "<br>Timestamp: " + datetime.toUTCString();    //convert the original unix timestamp to a user readable date time value
+        "<br>Request Date: " + datetime.toUTCString();    //convert the original unix timestamp to a user readable date time value
 }
 
 

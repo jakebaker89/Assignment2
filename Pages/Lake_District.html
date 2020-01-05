@@ -27,7 +27,7 @@
         <th class="name">Hill Name</th>
         <th class="height">Height<br>(m)</th>
         <th class="county">County</th>
-        <th class="complete"><label for="Header">Completed<br>(Select All)</label><input type="checkbox" id="Header"></th>
+        <th class="complete">Completed</th>
     </tr>
     <tr>
         <td><label for="Scafell Pike">Scafell Pike</label></td>
@@ -1314,9 +1314,66 @@
         <td><input type="checkbox" id="Castle Crag"></td>
     </tr>
 </table>
+    <br>
+    <div class="selectButtons">
+        <button type="button" id="saveButton" onclick=save()>Save Changes</button>
+        <button type="button" id="clearButton" onclick=remove()>Clear All</button>
+    </div>
 </div>
+
+<script>
+    /*
+        The save() function saves any changes made to the checkboxes into local storage
+        It creates an array of all of the checkbox ids, then loops through each one saving the state into local storage
+        Page is reloaded when this is selected to show the user that an action has been completed
+    */
+    function save(){
+        var boxArray = ["Scafell Pike","Sca Fell","Helvellyn","Skiddaw","Great End","Bowfell","Great Gable","Nethermost Pike","Catstye Cam","Esk Pike","Raise","Fairfield","Blencathra","Skiddaw Little Man","Whiteside","Crinkle Crags - Long Top","Dollywaggon Pike","Great Dodd","Grasmoor","Stybarrow Dodd","St. Sunday Crag","Scoat Fell","Crag Hill [Eel Crag]","Red Pike (Wasdale)","High Street","Hart Crag","Steeple","Lingmell","High Stile","The Old Man of Coniston","High Raise (High Street)","Swirl How","Kirk Fell","Green Gable","Haycock","Brim Fell","Dove Crag","Ramsgill Head","Grisedale Pike","Watson's Dodd","Great Carrs","Thornthwaite Crag","Allen Crags","Glaramara","Kidsty Pike","Pillar Rock","Harter Fell (Mardale)","Dow Crag","Red Screes","Grey Friar","Sail","Wandope","Hopegill Head","Great Rigg","Stony Cove Pike","Wetherlam","High Raise (Langdale)","Slight Side","Mardale Ill Bell","Ill Bell","Hart Side","Red Pike (Buttermere)","Dale Head","Carl Side","High Crag","The Knott","Robinson","Seat Sandal","Sergeant Man","Harrison Stickle","Long Side","Kentmere Pike","Hindscarth","Clough Head","Ullscarf","Thunacar Knott","Froswick","Birkhouse Moor","Lonscale Fell","Brandreth","Branstree","Knott","Pike of Stickle","Whiteside Wainwright Summit","Yoke","Pike of Blisco","Bowscale Fell","Cold Pike","Pavey Ark","Gray Crag","Grey Knotts","Rest Dodd","Ullock Pike","Seatallan","Great Calva","Caw Fell","Bannerdale Crags","Loft Crag","Sheffield Pike","Bakestall","Scar Crags","Loadpot Hill","Wether Hill","Tarn Crag","Carrock Fell Summit","Whiteless Pike","High Pike (Caldbeck)","Place Fell","High Pike (Scandale)","Selside Pike","Middle Dodd","Harter Fell (Eskdale)","High Spy","Rossett Pike","Great Sca Fell","Fleetwith Pike","Base Brown","Sleddale Fell","Little Hart Crag","Causey Pike","Starling Dodd","Mungrisdale Common","Yewbarrow","Heron Pike","Birks","Hartsop Dodd","Great Borne","Illgill Head","High Seat","Seathwaite Fell","Haystacks","Bleaberry Fell","Shipman Knotts","Brae Fell","Middle Fell","Ard Crags","The Nab","Maiden Moor","Blake Fell","Sergeant's Crag","Hartsop Above How","Outerside","Angletarn Pikes","Brock Crags","Knott Rigg","Steel Fell","Lord's Seat","Tarn Crag (Easedale)","Meal Fell","Hard Knott","Blea Rigg","Lank Rigg","Bessyboot","Great Mell Fell","Calf Crag","Whin Rigg","Arthur's Pike","Great Cockup","Gavel Fell","Whinlatter","Bonscale Pike","Eagle Crag","Crag Fell","Souther Fell","High Hartsop Dodd","Sallows","High Tove","Mellbreak","Broom Fell","Beda Fell","Hen Comb","Low Pike","Little Mell Fell","Stone Arthur","Dodd","Green Crag","Wansfell","Grike","Sour Howes","Longlands Fell","Gowbarrow Fell","Armboth Fell","Burnbank Fell","Lingmoor Fell","Barf","Raven Crag","Graystones","Nab Scar","Barrow","Catbells","Binsey","Glenridding Dodd","Great Crag","Arnison Crag","Steel Knotts","Low Fell","Gibson Knott","Buckbarrow","Grange Fell","Fellbarrow","Helm Crag","Silver How","Hallin Fell","Walla Crag","Ling Fell","Latrigg","Troutbeck Tongue","Sale Fell","High Rigg","Rannerdale Knotts","Loughrigg Fell","Black Fell","Holm Fell","Castle Crag"];
+
+        for (var i=0; i < boxArray.length; i++) {
+            var checkbox = document.getElementById(boxArray[i]);
+            localStorage.setItem(boxArray[i], checkbox.checked);
+        }
+
+        location.reload();
+    }
+
+    /*
+        The load() function parses the value in local storage for each item in the array: ie each element id
+        It then sets the status of the corresponding checkbox in the document to the saved state from local storage
+    */
+    function load(){
+        var boxArray = ["Scafell Pike","Sca Fell","Helvellyn","Skiddaw","Great End","Bowfell","Great Gable","Nethermost Pike","Catstye Cam","Esk Pike","Raise","Fairfield","Blencathra","Skiddaw Little Man","Whiteside","Crinkle Crags - Long Top","Dollywaggon Pike","Great Dodd","Grasmoor","Stybarrow Dodd","St. Sunday Crag","Scoat Fell","Crag Hill [Eel Crag]","Red Pike (Wasdale)","High Street","Hart Crag","Steeple","Lingmell","High Stile","The Old Man of Coniston","High Raise (High Street)","Swirl How","Kirk Fell","Green Gable","Haycock","Brim Fell","Dove Crag","Ramsgill Head","Grisedale Pike","Watson's Dodd","Great Carrs","Thornthwaite Crag","Allen Crags","Glaramara","Kidsty Pike","Pillar Rock","Harter Fell (Mardale)","Dow Crag","Red Screes","Grey Friar","Sail","Wandope","Hopegill Head","Great Rigg","Stony Cove Pike","Wetherlam","High Raise (Langdale)","Slight Side","Mardale Ill Bell","Ill Bell","Hart Side","Red Pike (Buttermere)","Dale Head","Carl Side","High Crag","The Knott","Robinson","Seat Sandal","Sergeant Man","Harrison Stickle","Long Side","Kentmere Pike","Hindscarth","Clough Head","Ullscarf","Thunacar Knott","Froswick","Birkhouse Moor","Lonscale Fell","Brandreth","Branstree","Knott","Pike of Stickle","Whiteside Wainwright Summit","Yoke","Pike of Blisco","Bowscale Fell","Cold Pike","Pavey Ark","Gray Crag","Grey Knotts","Rest Dodd","Ullock Pike","Seatallan","Great Calva","Caw Fell","Bannerdale Crags","Loft Crag","Sheffield Pike","Bakestall","Scar Crags","Loadpot Hill","Wether Hill","Tarn Crag","Carrock Fell Summit","Whiteless Pike","High Pike (Caldbeck)","Place Fell","High Pike (Scandale)","Selside Pike","Middle Dodd","Harter Fell (Eskdale)","High Spy","Rossett Pike","Great Sca Fell","Fleetwith Pike","Base Brown","Sleddale Fell","Little Hart Crag","Causey Pike","Starling Dodd","Mungrisdale Common","Yewbarrow","Heron Pike","Birks","Hartsop Dodd","Great Borne","Illgill Head","High Seat","Seathwaite Fell","Haystacks","Bleaberry Fell","Shipman Knotts","Brae Fell","Middle Fell","Ard Crags","The Nab","Maiden Moor","Blake Fell","Sergeant's Crag","Hartsop Above How","Outerside","Angletarn Pikes","Brock Crags","Knott Rigg","Steel Fell","Lord's Seat","Tarn Crag (Easedale)","Meal Fell","Hard Knott","Blea Rigg","Lank Rigg","Bessyboot","Great Mell Fell","Calf Crag","Whin Rigg","Arthur's Pike","Great Cockup","Gavel Fell","Whinlatter","Bonscale Pike","Eagle Crag","Crag Fell","Souther Fell","High Hartsop Dodd","Sallows","High Tove","Mellbreak","Broom Fell","Beda Fell","Hen Comb","Low Pike","Little Mell Fell","Stone Arthur","Dodd","Green Crag","Wansfell","Grike","Sour Howes","Longlands Fell","Gowbarrow Fell","Armboth Fell","Burnbank Fell","Lingmoor Fell","Barf","Raven Crag","Graystones","Nab Scar","Barrow","Catbells","Binsey","Glenridding Dodd","Great Crag","Arnison Crag","Steel Knotts","Low Fell","Gibson Knott","Buckbarrow","Grange Fell","Fellbarrow","Helm Crag","Silver How","Hallin Fell","Walla Crag","Ling Fell","Latrigg","Troutbeck Tongue","Sale Fell","High Rigg","Rannerdale Knotts","Loughrigg Fell","Black Fell","Holm Fell","Castle Crag"];
+
+        for (var i=0; i < boxArray.length; i++) {
+            var checked = JSON.parse(localStorage.getItem(boxArray[i]));
+            document.getElementById(boxArray[i]).checked = checked;
+        }
+    }
+
+    /*
+        The remove() function clears local storage completely and reloads the page
+    */
+    function remove(){
+        localStorage.clear();
+        location.reload();
+    }
+
+    /*
+        The load() function loads the page with the local storage
+    */
+    load();
+</script>
+
 <br>
 <br>
+
+<!--buttons for other pages -->
+<div class="footer">
+    <a href = Hills.html><button class="menu" type="button">Hills</button></a>
+    <a href = Emergency.html><button class="menu" type="button">Emergency</button></a>
+    <a href = Locate_Me.html><button class="menu" type="button">Locate Me</button></a>
+</div>
 
 <!--buttons for other pages -->
 <div class="footer">
