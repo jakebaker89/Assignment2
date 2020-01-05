@@ -27,7 +27,7 @@
         <th class="name">Hill Name</th>
         <th class="height">Height (m)</th>
         <th class="county">County</th>
-        <th class="complete"><label for="Header">Completed (Select All)</label><input type="checkbox" id="Header"></th>
+        <th class="complete">Completed</th>
     </tr>
     <tr>
         <td><label for="Kinder Scout">Kinder Scout</label></td>
@@ -240,7 +240,57 @@
         <td><input type="checkbox" id="Revidge"></td>
     </tr>
 </table>
+    <br>
+    <div class="selectButtons">
+    <button type="button" id="saveButton" onclick=save()>Save Changes</button>
+    <button type="button" id="clearButton" onclick=remove()>Clear All</button>
+    </div>
 </div>
+
+<script>
+/*
+    The save() function saves any changes made to the checkboxes into local storage
+    It creates an array of all of the checkbox ids, then loops through each one saving the state into local storage
+    Page is reloaded when this is selected to show the user that an action has been completed
+*/
+    function save(){
+        var boxArray = ["Kinder Scout","Bleaklow Head","Kinder Low","Higher Shelf Stones","Grindslow Knoll","Black Hill","Brown Knoll","Shining Tor","Axe Edge Moor","High Stones","Margery Hill","Lord's Seat","Mill Hill","Black Chew Head","Featherbed Moss","Britland Edge Hill","Cheeks Hill","Lost Lad","Mam Tor","Oliver Hill","Shutlingsloe","Dead Edge End","Merryton Low","Snailsden Pike End","Eldon Hill","Stanage Pole","Eyam Moor (Sir William Hill)","Chrome Hill","High Wheeldon","Snells Low","Shatton Edge","Durham Edge","Gautries Hill","Croker Hill","Revidge"];
+
+        for (var i=0; i < boxArray.length; i++) {
+            var checkbox = document.getElementById(boxArray[i]);
+            localStorage.setItem(boxArray[i], checkbox.checked);
+        }
+
+        location.reload();
+    }
+
+/*
+    The load() function parses the value in local storage for each item in the array: ie each element id
+    It then sets the status of the corresponding checkbox in the document to the saved state from local storage
+*/
+    function load(){
+        var boxArray = ["Kinder Scout","Bleaklow Head","Kinder Low","Higher Shelf Stones","Grindslow Knoll","Black Hill","Brown Knoll","Shining Tor","Axe Edge Moor","High Stones","Margery Hill","Lord's Seat","Mill Hill","Black Chew Head","Featherbed Moss","Britland Edge Hill","Cheeks Hill","Lost Lad","Mam Tor","Oliver Hill","Shutlingsloe","Dead Edge End","Merryton Low","Snailsden Pike End","Eldon Hill","Stanage Pole","Eyam Moor (Sir William Hill)","Chrome Hill","High Wheeldon","Snells Low","Shatton Edge","Durham Edge","Gautries Hill","Croker Hill","Revidge"];
+
+        for (var i=0; i < boxArray.length; i++) {
+            var checked = JSON.parse(localStorage.getItem(boxArray[i]));
+            document.getElementById(boxArray[i]).checked = checked;
+        }
+    }
+
+/*
+    The remove() function clears local storage completely and reloads the page
+*/
+    function remove(){
+        localStorage.clear();
+        location.reload();
+    }
+
+/*
+    The load() function loads the page with the local storage
+*/
+   load();
+</script>
+
 <br>
 <br>
 
