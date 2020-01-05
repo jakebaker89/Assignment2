@@ -16,6 +16,25 @@ table {
     margin-left:auto;
     margin-right:auto;
 }
+th {
+    text-align: center;
+}
+td {
+    text-align: center;
+    height: 30px;
+}
+.name {
+    width: 20%;
+}
+.height {
+    width: 15%;
+}
+.county {
+    width: 20%;
+}
+.complete {
+    width: 20%;
+}
 
 /*
 body {
