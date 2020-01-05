@@ -15,22 +15,39 @@ var longitude;
 var accuracy;
 var timestamp;
 var datetime;
-var x = document.getElementById("test2");
-var y = document.getElementById("test");
+var x = document.getElementById("geo");
+var y = document.getElementById("words");
 
 /*
-    When the page loads, call the two functions required
-    getLocation function retrieves geolocation data, populates the the above variables and displays the output on the front end
-    get3Words function calls out to the What3Words API and retrieves a 3 word code used to identify a location
+    When the page loads, call the getLocation() function required
+    getLocation function retrieves geolocation dataand populates the the above variables
+
+    and displays the output on the front end
  */
 window.onload = function() {
     getLocation();
+    //get3words();
+};
+
+/*
+    When the user clicks the testButtonWords button, the get3words() function is called
+    get3Words function calls out to the What3Words API and retrieves a 3 word code used to identify a location
+ */
+    ButtonWords.onclick = function() {
     get3words();
 };
 
 /*
+    When the user clicks the testButtonGeo button, the showPosition() function is called
+    showPosition displays the geolocation data on the front end
+ */
+    ButtonGeo.onclick = function() {
+    showPosition();
+};
+
+/*
     -----------------------------
-    Callout for geolocation data
+    Callout to request geolocation data
     -----------------------------
 */
 
@@ -38,7 +55,6 @@ window.onload = function() {
 function getLocation() {
     if (navigator.geolocation) {
         navigator.geolocation.getCurrentPosition(getData);
-        navigator.geolocation.getCurrentPosition(showPosition);
 
     } else {
         x.innerHTML = "Geolocation is not supported by this browser.";
@@ -55,8 +71,13 @@ function getLocation() {
         //set datetime to be a Date type for the value of timestamp
         datetime = new Date(timestamp);
     }
+}
 
-//display geolocation data
+/*
+    -----------------------------
+    Display geolocation data
+    -----------------------------
+*/
     function showPosition() {
         x.innerHTML =
             //JB code to test
@@ -65,8 +86,6 @@ function getLocation() {
             "<br>Location Accuracy: " + accuracy + "m" +
             "<br>Timestamp: " + datetime.toUTCString();    //convert the original unix timestamp to a user readable date time value
     }
-
-}
 
 
 /*
@@ -84,14 +103,14 @@ function get3words() {
     //var w3wUrl = new URL;
 
     var w3wUrl = "https://api.what3words.com/v3/convert-to-3wa?coordinates=" + latitude + "%2C" + longitude + "&key=" + w3wKey;
-    document.getElementById("test3").innerHTML = w3wUrl;
+
     /*
     Connect to the URL of the API using the URL provided on page https://developer.what3words.com/public-api/docs#overview
     Include API key and use the GET method as suggested
     */
     //request.open('GET', 'https://api.what3words.com/v3/convert-to-3wa?coordinates=51.521251%2C-0.203586&key=U4YS2DD5', true);
-    request.open('GET',  w3wUrl);
     //request.open('GET', 'https://api.what3words.com/v3/convert-to-3wa?coordinates=52.983128%2C-1.997361&key=U4YS2DD5', true);
+    request.open('GET',  w3wUrl);
 
     request.onload = function () {
         /*
